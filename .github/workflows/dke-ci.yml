@@ -1,0 +1,31 @@
+name: dke-ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - dke
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.9.12"
+      - name: Install dependencies
+        run: |
+          pip3 install -r "${{ github.workspace }}/requirements.txt"
+          pip3 install flake8==7.3.0
+      - name: Flake8 in packages folder
+        run: |
+          flake8 packages --per-file-ignores="*/__init__.py:F401,packages/modules/devices/sma/sma_sunny_boy/device.py:F824,packages/modules/vehicles/vwid/soc.py:F824"
+      - name: Flake8 in runs folder
+        run: |
+          flake8 runs
+      - name: Test with pytest
+        run: |
+          PYTHONPATH=packages python -m pytest packages --log-cli-level=DEBUG
+          PYTHONPATH=runs python -m pytest packages --log-cli-level=DEBUG
