@@ -1,0 +1,8 @@
+{
+  "endpunkte": [
+    {"lauschen": "198.51.100.15", "port": 80, "ziel": "192.0.2.15", "ziel_port": 80},
+    {"lauschen": "198.51.100.16", "port": 80, "ziel": "192.0.2.16"}
+  ],
+  "zeitgrenze_s": 5,
+  "protokoll": "/var/log/owb-testinstanz/lesefilter/zugriffe.jsonl"
+}

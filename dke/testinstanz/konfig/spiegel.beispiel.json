@@ -1,0 +1,15 @@
+{
+  "quelle": {"host": "192.0.2.10", "port": 1883, "client_id": "owb-spiegel-quelle"},
+  "ziel": {"host": "198.51.100.19", "port": 1883, "client_id": "owb-spiegel-ziel"},
+  "frische_s": 60,
+  "pruef_intervall_s": 5,
+  "zuordnungen": [
+    {"quelle": "openWB/counter/1/get/", "ziel": "openWB/mqtt/counter/11/get/",
+     "felder": ["power", "imported", "exported", "currents", "powers", "voltages", "frequency", "power_factors"]},
+    {"quelle": "openWB/bat/2/get/", "ziel": "openWB/mqtt/bat/12/get/",
+     "felder": ["power", "soc", "imported", "exported"]},
+    {"quelle": "openWB/pv/3/get/", "ziel": "openWB/mqtt/pv/13/get/",
+     "felder": ["power", "exported"]}
+  ],
+  "protokoll": "/var/log/owb-testinstanz/spiegel/spiegel.jsonl"
+}

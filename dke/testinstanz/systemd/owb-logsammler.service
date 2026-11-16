@@ -1,0 +1,33 @@
+[Unit]
+Description=openWB test instance: log collector (one run, started by owb-logsammler.timer)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=owb-testinstanz
+Group=owb-testinstanz
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 /opt/owb-testinstanz/logsammler/logsammler.py --konfig /etc/owb-testinstanz/logsammler.json
+TimeoutStartSec=60
+LogsDirectory=owb-testinstanz/logsammler
+LogsDirectoryMode=0750
+CapabilityBoundingSet=
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+UMask=0027

@@ -1,0 +1,9 @@
+{
+  "befehl": ["ssh", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes",
+             "-o", "UserKnownHostsFile=/etc/owb-testinstanz/known_hosts",
+             "-i", "/etc/owb-testinstanz/logsammler_ed25519", "owb-log@198.51.100.30", "cat"],
+  "dateien": ["/var/www/html/openWB/ramdisk/main.log.1", "/var/www/html/openWB/ramdisk/main.log"],
+  "ablage": "/var/log/owb-testinstanz/logsammler",
+  "zeitgrenze_s": 30,
+  "aufbewahrung_tage": 14
+}
