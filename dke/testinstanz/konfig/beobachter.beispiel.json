@@ -1,0 +1,16 @@
+{
+  "seiten": [
+    {"name": "anlage", "host": "192.0.2.10", "port": 1883, "client_id": "owb-beobachter-anlage",
+     "topics": ["openWB/system/boot_done",
+                "openWB/counter/1/get/fault_state",
+                "openWB/chargepoint/4/get/imported",
+                "openWB/chargepoint/4/get/fault_state"]},
+    {"name": "test", "host": "198.51.100.19", "port": 1883, "client_id": "owb-beobachter-test",
+     "topics": ["openWB/system/boot_done",
+                "openWB/counter/11/get/fault_state",
+                "openWB/chargepoint/14/get/imported",
+                "openWB/chargepoint/14/get/fault_state"]}
+  ],
+  "takt_s": 60,
+  "protokoll": "/var/log/owb-testinstanz/beobachter/beobachter.jsonl"
+}

@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - name: Set up Python 3.9
@@ -29,3 +29,26 @@ jobs:
         run: |
           PYTHONPATH=packages python -m pytest packages --log-cli-level=DEBUG
           PYTHONPATH=runs python -m pytest packages --log-cli-level=DEBUG
+  testinstanz:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9.12", "3.13"]
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install -r dke/testinstanz/requirements-test.txt
+      - name: Flake8 in dke folder
+        run: |
+          flake8 dke
+      - name: Test with pytest
+        run: |
+          python -m pytest dke/testinstanz/tests -p no:cacheprovider
